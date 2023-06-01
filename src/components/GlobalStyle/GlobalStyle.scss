@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primaryColor: #433679;
+  --text-color-black: #333;
+  --text-color-white: #fff;
+
+  --font-size10: 10px;
+  --font-size12: 12px;
+  --font-size13: 13px;
+  --font-size14: 14px;
+  --font-size15: 15px;
+  --font-size16: 16px;
+  --font-size18: 18px;
+  --font-size20: 20px;
+  --font-size24: 24px;
+  --font-size26: 26px;
+  --font-size28: 28px;
+  --font-size30: 30px;
+  --font-size32: 32px;
+  --font-size38: 38px;
+  --font-size42: 42px;
+  --font-size45: 45px;
+  --font-size52: 52px;
+  --font-size58: 58px;
+  --font-size90: 90px;
+  --font-size96: 96px;
+  --font-size120: 120px;
+  --font-size130: 130px;
+
+  --font-weight-light: 300;
+  --font-weight-medium: 700;
+  --font-weight-bold: 900;
+
+  --line-height16: 16px;
+  --line-height18: 18px;
+  --line-height24: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: var(--system-14-font-size);
+  line-height: var(--system-14-line-height);
+  text-rendering: optimizeSpeed;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+.grid {
+  width: 100%;
+  padding: 0;
+}
+.grid.wide {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* PC with low resolution */
+@media (min-width: 1024px) and (max-width: 1270px) {
+  // .grid.wide {
+  //   padding: 0 20px;
+  // }
+  .wide {
+    width: 984px;
+  }
+}
+
+/* Tablet - PC with low resolution */
+@media (min-width: 740px) and (max-width: 1023px) {
+  .grid.wide {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 739px) {
+  .wide {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
