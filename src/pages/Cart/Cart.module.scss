@@ -288,10 +288,26 @@
           }
         }
 
-        a {
+        .changeAddressTitle {
           color: #ee6352;
           font-size: var(--font-size16);
         }
+      }
+    }
+
+    .changeAddress {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+
+      .changeAddress__select {
+        width: 180px;
+        height: 40px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        font-size: var(--font-size14);
+        color: var(--primaryColor);
       }
     }
 

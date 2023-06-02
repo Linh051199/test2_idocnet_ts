@@ -11,14 +11,21 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { actions } from "../../context";
 import CartList from "./CartList";
+import { apiGetProvinces } from "../../services/app";
 
 const cx = classNames.bind(styles);
+
+// interface apiProvince {
+//   data: string[] | [];
+// }
 
 const Cart = () => {
   const [state, dispatch] = useContext(CartContext);
   const { cartList } = state;
 
   const [currNumber, setCurrentNumber] = useState("");
+  const [showChangeAddress, setShowChangeAddress] = useState(true);
+  // console.log("🚀 ~ provinces:", provinces);
 
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -28,6 +35,18 @@ const Cart = () => {
     }
   }, [cartList]);
 
+  let dataProvinces: any = [];
+
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      const response = await apiGetProvinces();
+      console.log(response);
+      // dataProvinces = response.data.results;
+    };
+    fetchProvinces();
+  }, []);
+
+  console.log(dataProvinces);
   let total = 0;
 
   if (cartList.length > 0) {
@@ -35,6 +54,10 @@ const Cart = () => {
       total += cart.number * parseInt(cart.price);
     }
   }
+
+  const handleOnChange = (e: any) => {
+    console.log(e.target.value);
+  };
 
   return (
     <div>
@@ -64,7 +87,7 @@ const Cart = () => {
           <div className={cx("cartEmpty")}>
             <i className="fa-solid fa-cart-shopping"></i>
             <span>Your cart is currently empty.</span>
-            <Link to={"/test2_idocnet/"}>
+            <Link to={"/"}>
               <button>Return to shop</button>
             </Link>
           </div>
@@ -98,9 +121,32 @@ const Cart = () => {
                   <span>
                     Shipping to <strong>CA.</strong>
                   </span>
-                  <a href="/#">Change address </a>
+                  <div
+                    className={cx("changeAddressTitle")}
+                    onClick={() => setShowChangeAddress(!showChangeAddress)}
+                  >
+                    Change address
+                  </div>
                 </div>
               </div>
+              {showChangeAddress && (
+                <div className={cx("changeAddress")}>
+                  <select
+                    className={cx("changeAddress__select")}
+                    onChange={handleOnChange}
+                  >
+                    <option value="1">Choose Province</option>
+                    {/* {provinces?.data.results.map((province: any) => (
+                      <option
+                        key={province.province_id}
+                        value={province.province_id}
+                      >
+                        {province.province_name}
+                      </option>
+                    ))} */}
+                  </select>
+                </div>
+              )}
               <span className={cx("cart__separate")}></span>
               <div className={cx("cart__total")}>
                 <p>Total</p>

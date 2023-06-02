@@ -14,7 +14,7 @@ import ShopItem from "../Shop/ShopItem";
 import SideBarAd from "../../components/SideBarAd";
 import { CartContext } from "../../context/CartContext";
 import { actions } from "../../context";
-import storage from "../../util/storage";
+// import storage from "../../util/storage";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ const Product: React.FC = () => {
   const [colorCurr, setColorCurr] = useState("");
 
   const [state, dispatch] = useContext(CartContext);
-  const { cartList } = state;
+  // const { cartList } = state;
 
   const location = useLocation();
   const data = location.state;
