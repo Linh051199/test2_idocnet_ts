@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import classNames from "classnames/bind";
 import { Rate } from "antd";
@@ -6,13 +6,15 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
 import styles from "./Product.module.scss";
-// import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import HeaderFixed from "../../components/Header/HeaderFixed";
 import images from "../../assets/images";
 import ShopItem from "../Shop/ShopItem";
 import SideBarAd from "../../components/SideBarAd";
+import { CartContext } from "../../context/CartContext";
+import { actions } from "../../context";
+import storage from "../../util/storage";
 
 const cx = classNames.bind(styles);
 
@@ -24,15 +26,20 @@ const Product: React.FC = () => {
   const [colorGray, setColorGray] = useState<boolean>(false);
   const [colorWood, setColorWood] = useState<boolean>(false);
   const [btnBookActive, setBtnBookActive] = useState<boolean>(false);
+  const [colorCurr, setColorCurr] = useState("");
+
+  const [state, dispatch] = useContext(CartContext);
+  const { cartList } = state;
+
+  const location = useLocation();
+  const data = location.state;
+  const cartProduct = { ...data, number: numberBook, color: colorCurr };
 
   const handleOnClickSubtract = () => {
     if (numberBook > 1) {
       setNumberBook(numberBook - 1);
     }
   };
-
-  const location = useLocation();
-  const data = location.state;
 
   const controlHeader = () => {
     if (window.scrollY > 200) {
@@ -50,6 +57,7 @@ const Product: React.FC = () => {
   }, []);
 
   const handleOnClickWhite = () => {
+    setColorCurr("white");
     setColorWhite(true);
     setColorGray(false);
     setColorWood(false);
@@ -57,6 +65,8 @@ const Product: React.FC = () => {
   };
 
   const handleOnClickGray = () => {
+    setColorCurr("Gray");
+
     setColorWhite(false);
     setColorGray(true);
     setColorWood(false);
@@ -64,10 +74,16 @@ const Product: React.FC = () => {
   };
 
   const handleOnClickWood = () => {
+    setColorCurr("Wood");
+
     setColorWhite(false);
     setColorGray(false);
     setColorWood(true);
     setBtnBookActive(true);
+  };
+
+  const handleOnClickBuy = () => {
+    dispatch(actions.addCart(cartProduct));
   };
 
   return (
@@ -144,7 +160,12 @@ const Product: React.FC = () => {
                 <span onClick={() => setNumberBook(numberBook + 1)}>+</span>
               </div>
               {btnBookActive ? (
-                <div className={cx("product__btnActive")}>buy now</div>
+                <div
+                  className={cx("product__btnActive")}
+                  onClick={handleOnClickBuy}
+                >
+                  buy now
+                </div>
               ) : (
                 <div className={cx("product__btn")}>buy now</div>
               )}

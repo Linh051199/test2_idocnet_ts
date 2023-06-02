@@ -20,7 +20,7 @@ const SideBarAd = () => {
           <span>website</span>
         </div>
         <div className={cx("controlbuyNow")}>
-          <img src={images.buy} alt="img" />
+          <img src={images.buy2} alt="img" />
           <span>Buy Now</span>
         </div>
         <div className={cx("header")}>

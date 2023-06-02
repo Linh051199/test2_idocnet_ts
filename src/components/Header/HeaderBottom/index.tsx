@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import isEmpty from "validator/lib/isEmpty";
 
 import styles from "./HeaderBottom.module.scss";
 import images from "../../../assets/images";
 import { Link } from "react-router-dom";
+// import { initState } from "../../../context/reducer";
+import { CartContext } from "../../../context/CartContext";
 
 const cx = classNames.bind(styles);
 
@@ -13,13 +15,30 @@ interface IMessErr {
   password?: string;
 }
 
-const HeaderBottom = () => {
+interface IProps {
+  data?:
+    | {
+        src: string;
+        name: string;
+        star: number;
+        price: string;
+        priceHidden?: string;
+      }
+    | {};
+}
+const HeaderBottom: React.FC<IProps> = ({ data }) => {
   const [showLoinForm, setShowLoinForm] = useState<boolean>(false);
   const [showCart, setShowCart] = useState<boolean>(false);
   // const [showSearchBox, setSearchBox] = useState(false);
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [messErr, setMessErr] = useState<IMessErr>({});
+
+  const [state, dispatch] = useContext(CartContext);
+  const { cartList } = state;
+
+  const dataCart: any = [];
+  dataCart.push(data);
 
   const handleOnChangeUserName = (e: any) => {
     setUserName(e.target.value);
@@ -55,7 +74,7 @@ const HeaderBottom = () => {
   return (
     <div className={cx("headerBottom_wrapper", "grid")}>
       <div className={cx("headerBottom_body", "grid", "wide")}>
-        <Link to={"/test2_idocnet"}>
+        <Link to={"/"}>
           <div className={cx("headerBottom__logo")}>
             <img src={images.logo} alt="logo" />
           </div>
@@ -71,24 +90,28 @@ const HeaderBottom = () => {
           <div className={cx("headerBottom__contactItem", "searchIcon")}>
             <i className="fa-solid fa-magnifying-glass"></i>
           </div>
+
           <div className={cx("headerBottom__contactItem")}>
+            <div className={cx("headerBottom__contactItemNumber")}>0</div>
             <i className="fa-regular fa-heart"></i>
           </div>
 
-          <div
-            className={cx("headerBottom__contactItem")}
-            onClick={() => setShowCart(true)}
-          >
-            <div className={cx("headerBottom__contactItemNumber")}>0</div>
-            <img src={images.cart} alt="img" />
-          </div>
+          <Link to={"/cart"}>
+            <div
+              className={cx("headerBottom__contactItem")}
+              // onClick={() => setShowCart(true)}
+            >
+              <div className={cx("headerBottom__contactItemNumber")}>
+                {cartList.length}
+              </div>
+              <img src={images.cart} alt="img" />
+            </div>
+          </Link>
 
           <div
             className={cx("headerBottom__contactItem")}
             onClick={() => setShowLoinForm(!showLoinForm)}
           >
-            <div className={cx("headerBottom__contactItemNumber")}>0</div>
-
             <img src={images.user} alt="img" />
           </div>
         </div>
@@ -153,8 +176,7 @@ const HeaderBottom = () => {
                 <p>CART</p>
               </div>
               <div className={cx("headerBottom__cartBody")}>
-                <img src={images.buyBlack} alt="img" />
-                <p>Your cart is currently empty.</p>
+                {/* <div>{data}</div> */}
               </div>
               <div className={cx("headerBottom__cartFooter")}>
                 <div className={cx("headerBottom__subTotal")}>

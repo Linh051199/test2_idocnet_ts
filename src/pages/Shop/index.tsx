@@ -201,8 +201,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic3-800x800.webp"
               name="Balcony chair"
               star={4}
-              price=" $199.00"
-              priceHidden="$250.00"
+              price="199.00"
+              priceHidden="250.00"
             />
           </div>
 
@@ -211,8 +211,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic5-800x800.webp"
               name="Bed with wood frame"
               star={4}
-              price="$1,250.00"
-              priceHidden="$1,389.00"
+              price="1250"
+              priceHidden="1,389.00"
             />
           </div>
 
@@ -221,8 +221,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic17-800x800.webp"
               name="Bedroom cabinet Orlean"
               star={4}
-              price="$799.00"
-              priceHidden="$899.00"
+              price="799.00"
+              priceHidden="899.00"
             />
           </div>
 
@@ -231,8 +231,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic13-800x800.webp"
               name=" $350.00"
               star={4}
-              price=" $350.00"
-              priceHidden="$399.00"
+              price="350.00"
+              priceHidden="399.00"
             />
           </div>
 
@@ -241,8 +241,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic20-800x800.webp"
               name="Cosy RTV sofa"
               star={4}
-              price="$1,600.00"
-              priceHidden="$1,300.00"
+              price="1600.00"
+              priceHidden="1,300.00"
             />
           </div>
 
@@ -251,7 +251,7 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic8-800x800.webp"
               name="Desk lamp"
               star={4}
-              price="$135.00"
+              price="135.00"
             />
           </div>
 
@@ -260,8 +260,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic12-800x800.webp"
               name="Dining room table"
               star={4}
-              price=" $1,200.00"
-              priceHidden="$1,399.00"
+              price="1200.00"
+              priceHidden="1,399.00"
             />
           </div>
 
@@ -270,8 +270,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/02/befurniturestore2-product-pic6-800x800.webp"
               name="Family Bed Oregon"
               star={4}
-              price="$1,899.00"
-              priceHidden="$1,999.00"
+              price="1899.00"
+              priceHidden="1,999.00"
             />
           </div>
 
@@ -280,7 +280,7 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic4-800x800.webp"
               name="Hanging outdoor bed"
               star={4}
-              price="$358.00"
+              price="358.00"
             />
           </div>
 
@@ -289,7 +289,7 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/02/befurniturestore2-product-pic11-800x800.webp"
               name="Kitchen table Oklahoma"
               star={4}
-              price="$689.00"
+              price="689.00"
             />
           </div>
 
@@ -298,8 +298,8 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic9-800x800.webp"
               name="Living room lamp"
               star={4}
-              price=" $450.00"
-              priceHidden="$599.00"
+              price="450.00"
+              priceHidden="599.00"
             />
           </div>
 
@@ -308,7 +308,7 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic19-800x800.webp"
               name="Sleeper sofa Cubic"
               star={4}
-              price="$1,299.00"
+              price="1299.00"
             />
           </div>
         </div>

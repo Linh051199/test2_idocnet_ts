@@ -4,11 +4,23 @@ import HeaderTop from "./HeaderTop";
 import HeaderBottom from "./HeaderBottom";
 import HeaderNav from "./HeaderNav";
 
-const Header: React.FC = () => {
+interface IProps {
+  data?:
+    | {
+        src: string;
+        name: string;
+        star: number;
+        price: string;
+        priceHidden?: string;
+      }
+    | {};
+}
+
+const Header: React.FC<IProps> = ({ data }) => {
   return (
     <div className="wrapper grid">
       <HeaderTop />
-      <HeaderBottom />
+      <HeaderBottom data={data} />
       <HeaderNav />
     </div>
   );

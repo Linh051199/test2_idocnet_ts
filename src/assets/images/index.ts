@@ -1,4 +1,4 @@
-const images = {
+const images: any = {
   air: require("./Air.svg").default,
   coin: require("./Coin.svg").default,
   tag: require("./Tag.svg").default,
@@ -27,7 +27,7 @@ const images = {
   footerVisa: require("./footerVisa.svg").default,
   freeShip: require("./freeShip.svg").default,
   call: require("./call.svg").default,
-  buy: require("./buy.svg").default,
+  buy2: require("./buy2.svg").default,
   buyBlack: require("./buyBlack.svg").default,
   categories: require("./categories.svg").default,
   filter1: require("./filter1.svg").default,
