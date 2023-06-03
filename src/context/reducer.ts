@@ -80,6 +80,7 @@ const reducer = (state: any, action: any) => {
           arr.number = action.payload.number;
         }
       });
+      storage.set(newArrUpdate);
       return {
         ...state,
         cartList: newArrUpdate,

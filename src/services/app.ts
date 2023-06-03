@@ -12,3 +12,15 @@ export const apiGetProvinces = () =>
       reject(error);
     }
   });
+export const apiGetDistrict = (provinceId: any) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `https://vapi.vnappmob.com/api/province/district/${provinceId}`,
+      });
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });

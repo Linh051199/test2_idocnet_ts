@@ -29,7 +29,6 @@ interface IProps {
 const HeaderBottom: React.FC<IProps> = ({ data }) => {
   const [showLoinForm, setShowLoinForm] = useState<boolean>(false);
   const [showCart, setShowCart] = useState<boolean>(false);
-  // const [showSearchBox, setSearchBox] = useState(false);
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [messErr, setMessErr] = useState<IMessErr>({});

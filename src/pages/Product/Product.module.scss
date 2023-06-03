@@ -2,10 +2,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  //   height: 3000px;
 
   .product__info {
-    // max-height: 3000px;
     display: flex;
     flex-direction: row-reverse;
     .product__list {
@@ -706,7 +704,7 @@
   background-color: #111;
 
   input[type="checkbox"]:checked ~ label > img {
-    transform: scale(1.6);
+    transform: scale(1.3);
     cursor: zoom-out;
   }
 
@@ -730,7 +728,7 @@
   img {
     transition: transform 0.25s ease;
     cursor: zoom-in;
-    width: 100%;
+    width: 80%;
     height: 100%;
   }
 }

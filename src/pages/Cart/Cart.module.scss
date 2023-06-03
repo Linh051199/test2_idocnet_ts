@@ -272,6 +272,7 @@
       div {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
         p {
           font-size: var(--font-size16);
           font-weight: var(--font-weight-medium);
@@ -279,28 +280,43 @@
         }
 
         span {
+          align-items: flex-end;
           font-size: var(--font-size16);
           color: var(--primaryColor);
           margin: 10px 0;
+          text-align: right;
 
           strong {
             font-weight: var(--font-weight-medium);
+          }
+
+          p {
+            font-size: var(--font-size14);
+            color: #ee6352;
+            opacity: 1 !important;
           }
         }
 
         .changeAddressTitle {
           color: #ee6352;
           font-size: var(--font-size16);
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
     }
 
     .changeAddress {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
       width: 100%;
 
-      .changeAddress__select {
+      select {
+        // position: relative;
         width: 180px;
         height: 40px;
         border: none;
@@ -308,6 +324,30 @@
         background-color: #fff;
         font-size: var(--font-size14);
         color: var(--primaryColor);
+        margin-bottom: 20px;
+
+        option {
+          // // position: absolute;
+          // top: 0;
+          // overflow-y: auto;
+          max-height: 200px !important;
+        }
+      }
+
+      .changeAddress__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 50px;
+        background-color: #ee6352;
+        color: var(--text-color-white);
+        font-size: var(--font-size16);
+        font-weight: var(--font-weight-medium);
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
 

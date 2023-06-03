@@ -11,23 +11,33 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { actions } from "../../context";
 import CartList from "./CartList";
-import { apiGetProvinces } from "../../services/app";
+import { apiGetProvinces, apiGetDistrict } from "../../services/app";
 
 const cx = classNames.bind(styles);
 
-// interface apiProvince {
-//   data: string[] | [];
-// }
+interface IMessErr {
+  province?: string;
+  district?: string;
+}
 
 const Cart = () => {
   const [state, dispatch] = useContext(CartContext);
   const { cartList } = state;
 
   const [currNumber, setCurrentNumber] = useState("");
-  const [showChangeAddress, setShowChangeAddress] = useState(true);
-  // console.log("🚀 ~ provinces:", provinces);
-
+  const [showChangeAddress, setShowChangeAddress] = useState(false);
+  const [dataProvinces, setDataProvinces] = useState<any>([]);
+  const [dataDistricts, setDataDistrict] = useState<any>([]);
+  const [province, setProvince] = useState("");
+  const [provinceID, setProvinceID] = useState("");
+  const [districtID, setDistrictID] = useState("");
+  const [addressProvince, setAddressProvince] = useState("Hà Nội");
+  const [addressDistrict, setAddressDistrict] = useState("Cầu Giấy");
+  const [messErr, setMessErr] = useState<IMessErr>({});
   const [isEmpty, setIsEmpty] = useState(true);
+
+  let nameProvince: any = "Hà Nội";
+  let nameDistrict: any = "Cầu Giấy";
 
   useEffect(() => {
     if (cartList.length > 0) {
@@ -35,18 +45,27 @@ const Cart = () => {
     }
   }, [cartList]);
 
-  let dataProvinces: any = [];
-
   useEffect(() => {
     const fetchProvinces = async () => {
-      const response = await apiGetProvinces();
-      console.log(response);
-      // dataProvinces = response.data.results;
+      const response: any = await apiGetProvinces();
+      if (response.status === 200) {
+        setDataProvinces(response.data.results);
+      }
     };
     fetchProvinces();
   }, []);
 
-  console.log(dataProvinces);
+  useEffect(() => {
+    const fetchDistricts = async (province: any) => {
+      const response: any = await apiGetDistrict(province);
+      if (response.status === 200) {
+        setDataDistrict(response.data.results);
+      }
+    };
+
+    province && fetchDistricts(province);
+  }, [province]);
+
   let total = 0;
 
   if (cartList.length > 0) {
@@ -55,9 +74,58 @@ const Cart = () => {
     }
   }
 
-  const handleOnChange = (e: any) => {
+  const handleOnChangeProvince = (e: any) => {
+    setProvince(e.target.value);
+    setProvinceID(e.target.value);
+  };
+
+  const handleOnChangeDistrict = (e: any) => {
+    setDistrictID(e.target.value);
+  };
+
+  let findProvince = dataProvinces.find((province: any) => {
+    return province.province_id === provinceID;
+  });
+  nameProvince =
+    findProvince?.province_name === undefined
+      ? ""
+      : findProvince?.province_name;
+
+  let findDistritc = dataDistricts.find((district: any) => {
+    return district.district_id === districtID;
+  });
+  nameDistrict =
+    findDistritc?.district_name === undefined
+      ? ""
+      : findDistritc?.district_name;
+
+  const handleOnClickProvince = (e: any) => {
     console.log(e.target.value);
   };
+
+  const handleOnSubmitChangeAddress = () => {
+    setAddressProvince(nameProvince);
+    setAddressDistrict(nameDistrict);
+    const isValid = validateAll();
+    if (!isValid) return;
+    setShowChangeAddress(false);
+  };
+
+  const validateAll = () => {
+    const errArr: IMessErr = {};
+    if (province === "") {
+      errArr.province = "Please enter your Province!";
+    }
+    if (nameDistrict === "") {
+      errArr.district = "Please enter your District!";
+    }
+
+    setMessErr(errArr);
+    if (Object.keys(errArr).length > 0) return false;
+    return true;
+  };
+
+  const handleOnSubmitProcced = () => {};
 
   return (
     <div>
@@ -119,7 +187,10 @@ const Cart = () => {
                 <div>
                   <p>Free shipping</p>
                   <span>
-                    Shipping to <strong>CA.</strong>
+                    Shipping to :{" "}
+                    <strong>{`${addressDistrict}, ${addressProvince} `}</strong>
+                    <p>{messErr.province}</p>
+                    <p>{messErr.district}</p>
                   </span>
                   <div
                     className={cx("changeAddressTitle")}
@@ -133,18 +204,41 @@ const Cart = () => {
                 <div className={cx("changeAddress")}>
                   <select
                     className={cx("changeAddress__select")}
-                    onChange={handleOnChange}
+                    onChange={handleOnChangeProvince}
+                    onClick={() => handleOnClickProvince}
+                    // size={20}
                   >
-                    <option value="1">Choose Province</option>
-                    {/* {provinces?.data.results.map((province: any) => (
+                    <option value="">Choose Province</option>
+                    {dataProvinces?.map((province: any) => (
                       <option
                         key={province.province_id}
                         value={province.province_id}
                       >
                         {province.province_name}
                       </option>
-                    ))} */}
+                    ))}
                   </select>
+
+                  <select
+                    className={cx("changeAddress__select")}
+                    onChange={handleOnChangeDistrict}
+                  >
+                    <option value="">Choose District</option>
+                    {dataDistricts?.map((province: any) => (
+                      <option
+                        key={province.district_id}
+                        value={province.district_id}
+                      >
+                        {province.district_name}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    className={cx("changeAddress__btn")}
+                    onClick={handleOnSubmitChangeAddress}
+                  >
+                    Update
+                  </button>
                 </div>
               )}
               <span className={cx("cart__separate")}></span>
@@ -152,7 +246,13 @@ const Cart = () => {
                 <p>Total</p>
                 <span>${total.toFixed(2)}</span>
               </div>
-              <button className={cx("cart__btn")}> Procced to checkout</button>
+              <button
+                className={cx("cart__btn")}
+                onClick={handleOnSubmitProcced}
+              >
+                {" "}
+                Procced to checkout
+              </button>
               <Link to={"/"}>
                 <div className={cx("cart__continute")}>Continute shooping</div>
               </Link>
