@@ -65,6 +65,14 @@ const reducer = (state: any, action: any) => {
 
     case DELETE_CART:
       let newArr = [...state.cartList];
+      // console.log("data", action.payload);
+      // newArr.map((arr) => {
+      //   if (arr.name === action.payload) {
+      //     console.log(arr);
+      //     newArr.splice(arr, 1);
+      //   }
+      // });
+      storage.set(newArr);
       newArr.splice(action.payload, 1);
       storage.set(newArr);
       return {

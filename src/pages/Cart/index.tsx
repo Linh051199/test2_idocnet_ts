@@ -49,6 +49,7 @@ const Cart = () => {
     const fetchProvinces = async () => {
       const response: any = await apiGetProvinces();
       if (response.status === 200) {
+        console.log(response);
         setDataProvinces(response.data.results);
       }
     };
@@ -172,7 +173,7 @@ const Cart = () => {
               </div>
               <span className={cx("cart__bodySeparate")}></span>
               {cartList.map((cart: any, index: number) => (
-                <CartList key={index} data={cart} />
+                <CartList key={index} data={cart} index={index} />
               ))}
             </div>
             <div className={cx("cart__totals")}>

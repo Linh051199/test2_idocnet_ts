@@ -107,7 +107,7 @@ const Product: React.FC = () => {
               <div className={cx("product__priceHidden")}>
                 {data.priceHidden}
               </div>
-              <div className={cx("product__priceShow")}>{data.price}</div>
+              <div className={cx("product__priceShow")}>$ {data.price}</div>
             </div>
             <div className={cx("product__warranty")}>
               <p>Warranty</p>
@@ -211,7 +211,7 @@ const Product: React.FC = () => {
                 <div className={cx("product__priceHidden")}>
                   {data.priceHidden}
                 </div>
-                <div className={cx("product__priceShow")}>{data.price}</div>
+                <div className={cx("product__priceShow")}>$ {data.price}</div>
               </div>
               <div className={cx("product__warranty")}>
                 <p>Warranty</p>
@@ -264,7 +264,7 @@ const Product: React.FC = () => {
                   <span onClick={() => setNumberBook(numberBook + 1)}>+</span>
                 </div>
                 {btnBookActive ? (
-                  <div className={cx("product__btnActive")}>buy now</div>
+                  <div className={cx("product__btnActive")} onClick={handleOnClickBuy}>buy now</div>
                 ) : (
                   <div className={cx("product__btn")}>buy now</div>
                 )}

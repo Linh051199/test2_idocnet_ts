@@ -5,8 +5,8 @@ import isEmpty from "validator/lib/isEmpty";
 import styles from "./HeaderBottom.module.scss";
 import images from "../../../assets/images";
 import { Link } from "react-router-dom";
-// import { initState } from "../../../context/reducer";
 import { CartContext } from "../../../context/CartContext";
+import CartItem from "./CartItem";
 
 const cx = classNames.bind(styles);
 
@@ -32,9 +32,16 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [messErr, setMessErr] = useState<IMessErr>({});
+  const [isEmptyCart, setIsEmptyCart] = useState(true);
 
   const [state, dispatch] = useContext(CartContext);
   const { cartList } = state;
+
+  useEffect(() => {
+    if (cartList.length > 0) {
+      setIsEmptyCart(false);
+    }
+  }, [cartList]);
 
   const dataCart: any = [];
   dataCart.push(data);
@@ -95,17 +102,15 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
             <i className="fa-regular fa-heart"></i>
           </div>
 
-          <Link to={"/cart"}>
-            <div
-              className={cx("headerBottom__contactItem")}
-              // onClick={() => setShowCart(true)}
-            >
-              <div className={cx("headerBottom__contactItemNumber")}>
-                {cartList.length}
-              </div>
-              <img src={images.cart} alt="img" />
+          <div
+            className={cx("headerBottom__contactItem")}
+            onClick={() => setShowCart(true)}
+          >
+            <div className={cx("headerBottom__contactItemNumber")}>
+              {cartList.length}
             </div>
-          </Link>
+            <img src={images.cart} alt="img" />
+          </div>
 
           <div
             className={cx("headerBottom__contactItem")}
@@ -175,7 +180,21 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
                 <p>CART</p>
               </div>
               <div className={cx("headerBottom__cartBody")}>
-                {/* <div>{data}</div> */}
+                {isEmptyCart ? (
+                  <div className={cx("cartEmpty")}>
+                    <i className="fa-solid fa-cart-shopping"></i>
+                    <span>Your cart is currently empty.</span>
+                    <Link to={"/"}>
+                      <button>Return to shop</button>
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    {cartList.map((cart: any, index: number) => (
+                      <CartItem key={index} data={cart} index={index} />
+                    ))}
+                  </div>
+                )}
               </div>
               <div className={cx("headerBottom__cartFooter")}>
                 <div className={cx("headerBottom__subTotal")}>
@@ -189,7 +208,14 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
                 <div className={cx("headerBottom__checkoutBtn")}>
                   Proceed to checkout
                 </div>
-                <div className={cx("headerBottom__viewCart")}>View cart</div>
+                <Link to={"/cart"}>
+                  <div
+                    className={cx("headerBottom__viewCart")}
+                    onClick={() => setShowCart(false)}
+                  >
+                    View cart
+                  </div>
+                </Link>
               </div>
             </div>
           </>

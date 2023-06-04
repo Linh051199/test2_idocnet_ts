@@ -14,10 +14,11 @@ interface Props {
     price: string;
     number: number;
   };
+  index: number;
 }
 
-const CartList: React.FC<Props> = (props, index) => {
-  const { data } = props;
+const CartList: React.FC<Props> = (props) => {
+  const { data, index } = props;
 
   const [currNumber, setCurrentNumber] = useState(data.number);
 

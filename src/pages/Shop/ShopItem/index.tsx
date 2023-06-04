@@ -37,8 +37,8 @@ const ShopItem: React.FC<IProps> = ({
           />
         </div>
         <div className={cx("shopItem__price")}>
-          <div className={cx("shopItem__priceHidden")}>{priceHidden}</div>
-          <div className={cx("shopItem__priceShow")}>{price}</div>
+          <div className={cx("shopItem__priceHidden")}>$ {priceHidden}</div>
+          <div className={cx("shopItem__priceShow")}>$ {price}</div>
         </div>
       </div>
     </Link>

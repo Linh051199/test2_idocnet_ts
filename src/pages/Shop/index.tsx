@@ -211,7 +211,7 @@ const Shop: React.FC = () => {
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic5-800x800.webp"
               name="Bed with wood frame"
               star={4}
-              price="1250"
+              price="1250.00"
               priceHidden="1,389.00"
             />
           </div>
@@ -229,7 +229,7 @@ const Shop: React.FC = () => {
           <div className={cx("shop__item")}>
             <ShopItem
               src="https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic13-800x800.webp"
-              name=" $350.00"
+              name=" Comfortable armchair"
               star={4}
               price="350.00"
               priceHidden="399.00"
