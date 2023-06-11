@@ -157,7 +157,11 @@
     align-items: center !important;
     justify-content: center !important;
     .footer__contactInfoItem {
+      justify-content: center !important;
+      align-items: center !important;
       margin-bottom: 20px;
+      text-align: center !important;
+      font-size: var(--font-size12);
       &:first-child {
         padding-right: 0 !important;
       }

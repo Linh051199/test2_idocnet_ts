@@ -77,6 +77,14 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
     setShowCart(false);
   };
 
+  let total = 0;
+
+  if (cartList.length > 0) {
+    for (let cart of cartList) {
+      total += cart.number * parseInt(cart.price);
+    }
+  }
+
   return (
     <div className={cx("headerBottom_wrapper", "grid")}>
       <div className={cx("headerBottom_body", "grid", "wide")}>
@@ -172,11 +180,15 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
 
             <div className={cx("headerBottom__cart")}>
               <div className={cx("headerBottom__cartHeader")}>
-                <i
-                  className="fa-solid fa-xmark"
-                  onClick={() => setShowCart(false)}
-                ></i>
-                <img src={images.buyBlack} alt="img" />
+                <div className={cx("headerBottom__cartHeaderClose")}>
+                  <i
+                    className="fa-solid fa-xmark"
+                    onClick={() => setShowCart(false)}
+                  ></i>
+                </div>
+
+                {/* <img src={images.buyBlack} alt="img" /> */}
+                <i className="fa-solid fa-cart-shopping"></i>
                 <p>CART</p>
               </div>
               <div className={cx("headerBottom__cartBody")}>
@@ -185,7 +197,9 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
                     <i className="fa-solid fa-cart-shopping"></i>
                     <span>Your cart is currently empty.</span>
                     <Link to={"/"}>
-                      <button>Return to shop</button>
+                      <button onClick={() => setShowCart(false)}>
+                        Return to shop
+                      </button>
                     </Link>
                   </div>
                 ) : (
@@ -199,11 +213,11 @@ const HeaderBottom: React.FC<IProps> = ({ data }) => {
               <div className={cx("headerBottom__cartFooter")}>
                 <div className={cx("headerBottom__subTotal")}>
                   <span>Subtotal</span>
-                  <p>$0.00</p>
+                  <span>${total.toFixed(2)}</span>
                 </div>
                 <div className={cx("headerBottom__total")}>
                   <span>Total</span>
-                  <p>$0.00</p>
+                  <span>${total.toFixed(2)}</span>
                 </div>
                 <div className={cx("headerBottom__checkoutBtn")}>
                   Proceed to checkout

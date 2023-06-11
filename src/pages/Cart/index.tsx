@@ -49,7 +49,6 @@ const Cart = () => {
     const fetchProvinces = async () => {
       const response: any = await apiGetProvinces();
       if (response.status === 200) {
-        console.log(response);
         setDataProvinces(response.data.results);
       }
     };
@@ -100,9 +99,7 @@ const Cart = () => {
       ? ""
       : findDistritc?.district_name;
 
-  const handleOnClickProvince = (e: any) => {
-    console.log(e.target.value);
-  };
+  const handleOnClickProvince = (e: any) => {};
 
   const handleOnSubmitChangeAddress = () => {
     setAddressProvince(nameProvince);

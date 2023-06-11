@@ -103,7 +103,7 @@
 
     .shop__filterNavContainer {
       position: fixed;
-      z-index: 99;
+      z-index: 100;
       top: 0;
       bottom: 0;
       left: 0;
@@ -136,7 +136,7 @@
   }
   .shop__filterNavOverlay {
     position: fixed;
-    z-index: 98;
+    z-index: 99;
     top: 0;
     bottom: 0;
     left: 0;

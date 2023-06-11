@@ -267,20 +267,22 @@
     width: 100%;
     border-bottom: 1px solid #ddd;
 
-    i {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: var(--font-size24);
-      margin-right: 20px;
-      margin-top: 20px;
-      opacity: 0.5;
-      transition: transform linear 0.2s, opacity linear 0.2s;
+    .headerBottom__cartHeaderClose {
+      i {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: var(--font-size24);
+        margin-right: 20px;
+        margin-top: 20px;
+        opacity: 0.5;
+        transition: transform linear 0.2s, opacity linear 0.2s;
 
-      &:hover {
-        transform: rotate(180deg);
-        opacity: 1;
-        cursor: pointer;
+        &:hover {
+          transform: rotate(180deg);
+          opacity: 1;
+          cursor: pointer;
+        }
       }
     }
 
@@ -289,10 +291,20 @@
       height: 48px;
     }
 
+    i {
+      font-size: var(--font-size20);
+      color: var(--primaryColor);
+      margin-right: 10px;
+    }
+
     p {
       font-size: var(--font-size20);
       font-weight: var(--font-weight-medium);
       color: var(--primaryColor);
+    }
+
+    .headerBottom__cartHeaderIcon {
+      display: flex;
     }
   }
 
@@ -429,6 +441,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
   i {
     font-size: var(--font-size45);
     opacity: 0.5;
